@@ -253,7 +253,7 @@ Clique com o botão direito → "Open with Live Server"
 ```bash
 npx serve public/
 ```
-3. Abrir diretamente:
+3.Abrir diretamente:
 
 Double-click no arquivo index.html
 
@@ -268,5 +268,35 @@ curl http://localhost:3000/api/familias
 # Listar Materiais
 curl http://localhost:3000/api/materiais?status=ativo
 ```
+## 🚀 Deploy na Vercel
 
-
+### Backend (Serverless)
+#### 1. Estrutura para a Vercel
+```bash
+backend-vercel/
+├── api/
+│   └── server.js          # Seu backend completo
+├── .env                   # Variáveis de ambiente
+├── package.json
+├── vercel.json
+└── .gitignore
+```
+2. Arquivo vercel.json
+```bash
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "api/server.js"
+    }
+  ]
+}
+```
+3. Deploy via CLI
