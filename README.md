@@ -319,5 +319,21 @@ Vá em **Settings** → **Environment Variables** e adicione:
 | `SUPABASE_KEY` | `sua_chave_anon` |
 | `NODE_ENV` | `production` |
 
+### Frontend
+Opção 1: Deploy na Vercel
+```bash
+# Na pasta do frontend
+vercel --prod
+```
+Opção 2: Deploy no GitHub Pages
+1. Crie um repositório no GitHub
+2. Push do frontend
+3. Ative o GitHub Pages nas configurações
+Opção 3: Deploy no Netlify
+1. Crie uma conta no Netlify
+2. Arraste a pasta do frontend
+3. Ou conecte seu repositório GitHub
+
+
 
 
