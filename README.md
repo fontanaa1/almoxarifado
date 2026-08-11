@@ -400,3 +400,48 @@ almoxarifado-senai/
 | --- | --- | --- |
 | GET | `/api/estatisticas` | Estatísticas do sistema |
 
+## 🎯 Como Usar
+
+### 1. Cadastrar uma Família
+1. Acesse o Dashboard
+2. Clique em "Novo Item"
+3. Selecione a Família e o Tipo
+4. O SKU será gerado automaticamente
+5. Preencha os demais campos
+6. Clique em "Cadastrar"
+
+### 2. Registrar Entrada via QR Code
+1. Acesse a aba "QR Code"
+2. Aponte a câmera para o QR Code do material
+3. O sistema identificará automaticamente o item
+4. Informe a quantidade e o responsável
+5. Clique em "Entrada"
+
+### 3. Registrar Saída via QR Code
+1. Acesse a aba "QR Code"
+2. Aponte a câmera para o QR Code do material
+3. Informe a quantidade e o responsável
+4. Clique em "Saída"
+
+### 4. Arquivar um Material
+1. Na lista de materiais, clique no ícone de arquivo
+2. Informe o motivo do arquivamento
+3. O material será movido para o "Arquivo Morto"
+
+### 5. Visualizar Histórico
+1. Acesse a aba "Movimentações"
+2. Use os filtros para buscar por tipo ou período
+3. Veja todas as movimentações registradas
+
+## 🤝 Contribuição
+Contribuições são bem-vindas! Siga os passos:
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (git checkout -b feature/AmazingFeature)
+3. Commit suas mudanças (git commit -m 'Add some AmazingFeature')
+4. Push para a branch (git push origin feature/AmazingFeature)
+5. Abra um Pull Request
+
+## 📞 Contato
+- Desenvolvedores: Isabella Rosa, Kemmily, Felipe Jacques e Lorena.
+- LinkedIn: linkedin.com/in/isabella-rosa-3bb848394, linkedin.com/in/kemmily-de-sousa-carvalho-655853394, linkedin.com/in/felipe-jacques-944126411 e linkedin.com/in/lorena-fontana-souza-b92857394.
