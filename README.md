@@ -271,7 +271,7 @@ curl http://localhost:3000/api/materiais?status=ativo
 ## 🚀 Deploy na Vercel
 
 ### Backend (Serverless)
-#### 1. Estrutura para a Vercel
+1. Estrutura para a Vercel
 ```bash
 backend-vercel/
 ├── api/
