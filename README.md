@@ -253,7 +253,7 @@ Clique com o botão direito → "Open with Live Server"
 ```bash
 npx serve public/
 ```
-3.Abrir diretamente:
+3. Abrir diretamente:
 
 Double-click no arquivo index.html
 
