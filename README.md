@@ -60,3 +60,154 @@ Antes de começar, certifique-se de ter instalado:
 ```bash
 git clone https://github.com/seu-usuario/almoxarifado-senai.git
 cd almoxarifado-senai
+```
+
+### 2. Instale as dependências do backend
+
+```bash
+npm install
+```
+
+### 3. Instale as dependências adicionais
+
+```bash
+npm install @supabase/supabase-js cors dotenv express qrcode
+```
+
+### 4. Configure o arquivo .env
+
+Crie um arquivo .env na raiz do projeto:
+
+```bash
+SUPABASE_URL=sua_url_do_supabase
+SUPABASE_KEY=sua_chave_anon_do_supabase
+PORT=300
+```
+
+---
+
+## 🗄️ Configuração do Banco de Dados
+
+### 1. Crie uma conta no Supabase
+
+Acesse https://supabase.com e crie uma conta gratuita.
+
+### 2. Crie um novo projeto
+
+-Clique em "New Project"
+-Escolha um nome para o projeto
+-Defina uma senha forte para o banco de dados
+-Aguarde a criação (pode levar alguns minutos)
+
+### 3.  Execute as migrações SQL
+
+No painel do Supabase, vá para SQL Editor e execute o seguinte script :
+
+```bash
+-- Tabela de Famílias
+CREATE TABLE familias (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    codigo VARCHAR(3) NOT NULL UNIQUE,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Tabela de Tipos
+CREATE TABLE tipos (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    familia_id UUID REFERENCES familias(id) ON DELETE CASCADE,
+    codigo VARCHAR(3) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    created_at TIMESTAMP DEFAULT NOW(),
+    UNIQUE(familia_id, codigo)
+);
+
+-- Tabela de Materiais
+CREATE TABLE materiais (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    sku VARCHAR(15) NOT NULL UNIQUE, -- Formato: FFF.TTT.PPPP
+    nome VARCHAR(200) NOT NULL,
+    descricao TEXT,
+    categoria VARCHAR(50),
+    localizacao VARCHAR(100),
+    quantidade INTEGER DEFAULT 0,
+    estoque_minimo INTEGER DEFAULT 0,
+    status VARCHAR(20) DEFAULT 'ativo', -- ativo, morto, baixa
+    qr_code TEXT,
+    motivo_arquivamento TEXT,
+    data_arquivamento DATE,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Tabela de Movimentações
+CREATE TABLE movimentacoes (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    material_id UUID REFERENCES materiais(id) ON DELETE CASCADE,
+    tipo VARCHAR(20) NOT NULL, -- entrada, saida, arquivamento, restauracao
+    quantidade INTEGER NOT NULL,
+    responsavel VARCHAR(100) NOT NULL,
+    motivo TEXT,
+    observacao TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Função para atualizar o updated_at
+CREATE OR REPLACE FUNCTION update_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_materiais_updated_at
+BEFORE UPDATE ON materiais
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at();
+
+-- Função para gerar próximo código SKU
+CREATE OR REPLACE FUNCTION gerar_proximo_sku(
+    p_familia_codigo VARCHAR(3),
+    p_tipo_codigo VARCHAR(3)
+)
+RETURNS VARCHAR(15) AS $$
+DECLARE
+    v_proximo_numero INTEGER;
+    v_sku VARCHAR(15);
+BEGIN
+    -- Busca o maior número sequencial para a combinação de família e tipo
+    SELECT COALESCE(MAX(CAST(SUBSTRING(sku FROM 9 FOR 4) AS INTEGER)), 0) + 1
+    INTO v_proximo_numero
+    FROM materiais
+    WHERE sku LIKE p_familia_codigo || '.' || p_tipo_codigo || '.%';
+    
+    -- Formata o SKU com 4 dígitos
+    v_sku := p_familia_codigo || '.' || p_tipo_codigo || '.' || LPAD(v_proximo_numero::TEXT, 4, '0');
+    
+    RETURN v_sku;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Índices para performance
+CREATE INDEX idx_materiais_sku ON materiais(sku);
+CREATE INDEX idx_materiais_status ON materiais(status);
+CREATE INDEX idx_movimentacoes_material_id ON movimentacoes(material_id);
+CREATE INDEX idx_movimentacoes_created_at ON movimentacoes(created_at);
+```
+
+### 4. Obtenha as credenciais do Supabase
+
+No painel do Supabase:
+
+1. Vá para Settings → API
+2. Copie a URL e a anon/public key
+3. Adicione essas informações ao seu arquivo .env
+
+## 🔧 Variáveis de Ambiente
+
+
+
+
