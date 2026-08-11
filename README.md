@@ -300,3 +300,24 @@ backend-vercel/
 }
 ```
 3. Deploy via CLI
+```bash
+# Instale a Vercel CLI
+npm i -g vercel
+
+# Na pasta do backend
+vercel
+
+# Para produção
+vercel --prod
+```
+4. Configurar Variáveis no Painel da Vercel
+Vá em **Settings** → **Environment Variables** e adicione:
+
+| Name | Value |
+| --- | --- |
+| `SUPABASE_URL` | `https://seu-projeto.supabase.co` |
+| `SUPABASE_KEY` | `sua_chave_anon` |
+| `NODE_ENV` | `production` |
+
+
+
