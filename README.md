@@ -229,8 +229,8 @@ const API_URL = 'http://localhost:3000/api';
 // Em produção: 'https://seu-backend.vercel.app/api'
 
 ```
-##▶️ Executando o Projeto
-###Backend
+## ▶️ Executando o Projeto
+### Backend
 ```bash
 # Modo desenvolvimento (com nodemon)
 npm run dev
@@ -240,7 +240,7 @@ npm start
 ```
 O servidor estará rodando em http://localhost:3000
 
-###Frontend
+### Frontend
 Para o frontend, você pode:
 
 1. Usar o Live Server do VS Code:
@@ -257,7 +257,7 @@ npx serve public/
 
 Double-click no arquivo index.html
 
-###Testando a API
+### Testando a API
 ```bash
 # Health Check
 curl http://localhost:3000/health
