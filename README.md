@@ -329,6 +329,7 @@ Opção 2: Deploy no GitHub Pages
 1. Crie um repositório no GitHub
 2. Push do frontend
 3. Ative o GitHub Pages nas configurações
+
 Opção 3: Deploy no Netlify
 1. Crie uma conta no Netlify
 2. Arraste a pasta do frontend
