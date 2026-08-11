@@ -208,6 +208,65 @@ No painel do Supabase:
 
 ## 🔧 Variáveis de Ambiente
 
+Arquivo .env (Backend)
+```bash
+# Supabase Configuration
+SUPABASE_URL=https://seu-projeto.supabase.co
+SUPABASE_KEY=sua_chave_anon_aqui
 
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+
+# Frontend URL (para CORS)
+FRONTEND_URL=http://localhost:5500
+```
+Variáveis para o Frontend
+No arquivo index.html do frontend, configure a URL da API:
+```bash
+// ALTERE PARA A URL DO SEU BACKEND
+const API_URL = 'http://localhost:3000/api';
+// Em produção: 'https://seu-backend.vercel.app/api'
+
+```
+##▶️ Executando o Projeto
+###Backend
+```bash
+# Modo desenvolvimento (com nodemon)
+npm run dev
+
+# Modo produção
+npm start
+```
+O servidor estará rodando em http://localhost:3000
+
+###Frontend
+Para o frontend, você pode:
+
+1. Usar o Live Server do VS Code:
+
+Abra o arquivo index.html
+
+Clique com o botão direito → "Open with Live Server"
+
+2. Usar um servidor HTTP simples:
+```bash
+npx serve public/
+```
+3.Abrir diretamente:
+
+Double-click no arquivo index.html
+
+###Testando a API
+```bash
+# Health Check
+curl http://localhost:3000/health
+
+# Listar Famílias
+curl http://localhost:3000/api/familias
+
+# Listar Materiais
+curl http://localhost:3000/api/materiais?status=ativo
+```
 
 
