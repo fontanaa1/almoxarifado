@@ -335,6 +335,68 @@ Opção 3: Deploy no Netlify
 2. Arraste a pasta do frontend
 3. Ou conecte seu repositório GitHub
 
+## 📁 Estrutura do Projeto
+```bash
+almoxarifado-senai/
+├── api/
+│   └── server.js              # Backend principal (Serverless)
+├── public/
+│   └── index.html             # Frontend completo
+├── database/
+│   └── migrations/
+│       ├── 001_create_familias.sql
+│       ├── 002_create_tipos.sql
+│       ├── 003_create_materiais.sql
+│       ├── 004_create_movimentacoes.sql
+│       └── 005_create_functions.sql
+├── .env                       # Variáveis de ambiente (não commitado)
+├── .gitignore
+├── package.json
+├── vercel.json                # Configuração da Vercel
+└── README.md                  # Este arquivo
+```
+## 🔌 Endpoints da API
 
+### Famílias
 
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| GET | `/api/familias` | Lista todas as famílias |
+| POST | `/api/familias` | Cria uma nova família |
+| PUT | `/api/familias/:id` | Atualiza uma família |
+| DELETE | `/api/familias/:id` | Exclui uma família |
+
+### Tipos
+
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| GET | `/api/tipos?familia_codigo=001` | Lista tipos por família |
+| POST | `/api/tipos` | Cria um novo tipo |
+
+### Materiais
+
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| GET | `/api/materiais` | Lista materiais com filtros |
+| GET | `/api/materiais/proximo-sku` | Gera próximo SKU |
+| GET | `/api/materiais/:sku` | Busca material por SKU |
+| POST | `/api/materiais` | Cadastra novo material |
+| PUT | `/api/materiais/:sku` | Atualiza material |
+| DELETE | `/api/materiais/:sku` | Exclui material |
+| POST | `/api/materiais/:sku/arquivar` | Move para arquivo morto |
+| POST | `/api/materiais/:sku/restaurar` | Restaura do arquivo morto |
+
+### Movimentações
+
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| GET | `/api/movimentacoes` | Lista movimentações |
+| POST | `/api/movimentacoes/entrada` | Registra entrada |
+| POST | `/api/movimentacoes/saida` | Registra saída |
+
+### Estatísticas
+
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| GET | `/api/estatisticas` | Estatísticas do sistema |
 
