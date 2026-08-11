@@ -19,7 +19,7 @@ Um sistema web moderno e responsivo desenvolvido para otimizar o controle e a ge
 - **Banco de Dados**: PostgreSQL hospedado no Supabase.
 
 ### Acesso à Hospedagem
--- **Frontend**: https://frontend-almoxarifado.vercel.app/
+- **Frontend**: https://frontend-almoxarifado.vercel.app/
 - **Frontend**: https://github.com/fontanaa1/frontend_almoxarifado.git
 - **Backend API**: https://github.com/11isinha/backend_almoxarifado3.git
 
